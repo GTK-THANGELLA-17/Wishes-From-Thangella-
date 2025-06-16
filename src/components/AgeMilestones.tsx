@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Trophy, Star, Heart, Sparkles } from 'lucide-react';
 import LiveAgeCounter from './LiveAgeCounter';
@@ -13,7 +12,11 @@ const AgeMilestones = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      {
+        root: null,
+        rootMargin: '0px 0px -50% 0px', // Trigger when element is halfway visible
+        threshold: 0.1, // Trigger when 10% visible
+      }
     );
 
     const element = document.getElementById('age-milestones');
@@ -26,14 +29,14 @@ const AgeMilestones = () => {
     {
       age: "31 Years",
       title: "Prime of Excellence! 🌸",
-      description: "Celebrating Habbeb in her prime—a brilliant  Analyst and soon a wonderful mother with Hussainaiah Anna! 👶💖",
+      description: "Celebrating Habbeb in her prime—a brilliant Analyst and soon a wonderful mother with Hussainaiah Anna! 👶💖",
       icon: Star,
       color: "from-pink-400 to-rose-500"
     },
     {
       age: "7+ Years",
       title: "Data Analytics Expert! 📊",
-      description: "Over 7 years mastering data insights as a  Analyst at LTI Mindtree while building a beautiful life together.",
+      description: "Over 7 years mastering data insights as a Analyst at LTI Mindtree while building a beautiful life together.",
       icon: Trophy,
       color: "from-purple-400 to-indigo-500"
     },
@@ -54,9 +57,16 @@ const AgeMilestones = () => {
   ];
 
   return (
-    <section id="age-milestones" className="py-20 px-6 bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
+    <section
+      id="age-milestones"
+      className="py-20 px-6 bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50"
+    >
       <div className="max-w-6xl mx-auto">
-        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div
+          className={`text-center mb-16 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
             Life's Remarkable Milestones 👑
           </h2>
@@ -66,7 +76,11 @@ const AgeMilestones = () => {
         </div>
 
         {/* Live Age Counter */}
-        <div className={`mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div
+          className={`mb-12 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <LiveAgeCounter />
         </div>
 
@@ -81,18 +95,20 @@ const AgeMilestones = () => {
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
-                <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${milestone.color} flex items-center justify-center mb-4 mx-auto animate-pulse`}>
+                <div
+                  className={`w-16 h-16 rounded-full bg-gradient-to-r ${milestone.color} flex items-center justify-center mb-4 mx-auto animate-pulse`}
+                >
                   <IconComponent className="w-8 h-8 text-white" />
                 </div>
-                
+
                 <div className="text-center">
-                  <h3 className={`text-2xl font-bold bg-gradient-to-r ${milestone.color} bg-clip-text text-transparent mb-2`}>
+                  <h3
+                    className={`text-2xl font-bold bg-gradient-to-r ${milestone.color} bg-clip-text text-transparent mb-2`}
+                  >
                     {milestone.age}
                   </h3>
                   <h4 className="text-lg font-semibold text-gray-800 mb-3">{milestone.title}</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {milestone.description}
-                  </p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{milestone.description}</p>
                 </div>
 
                 {/* Decorative elements */}
